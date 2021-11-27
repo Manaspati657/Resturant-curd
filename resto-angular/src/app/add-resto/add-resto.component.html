@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+
+<h1 *ngIf="isAddMode" class="text-center my-5">Add New Resturant</h1>
+
+<h1 *ngIf="!isAddMode" class="text-center my-5">
+  Edit Your Resturant Information
+</h1>
+
+<div class="col-sm-6 mx-auto">
+  <div
+    *ngIf="alert"
+    class="alert my-4 alert-primary alert-dismissible fade show"
+    role="alert"
+  >
+    <div *ngIf="isAddMode">
+      <strong>Success</strong> Your data has been Submitted.
+    </div>
+
+    <div *ngIf="!isAddMode">
+      <strong>Success</strong> Your data has been Updated !!!
+    </div>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <form [formGroup]="addResto" (ngSubmit)="collectResto()" novalidate>
+    <div class="mb-3">
+      <label class="form-label">Resturant Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Enter Resturant Name"
+      />
+      <div
+        *ngIf="restoName?.invalid && (restoName?.dirty || restoName?.touched)"
+        class="alertInput"
+      >
+        <div *ngIf="restoName?.errors?.required">
+          **Resturant name is required.
+        </div>
+        <div *ngIf="restoName?.errors?.minlength">
+          **Minmum 6 character required
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Enter your Email</label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="email"
+        placeholder="Enter email"
+      />
+      <div
+        *ngIf="emilId?.invalid && (emilId?.dirty || emilId?.touched)"
+        class="alertInput"
+      >
+        <div *ngIf="emilId?.errors?.required">**email is required.</div>
+        <div *ngIf="emilId?.errors?.email">**Invalid email id</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Enter Your Address</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="address"
+        placeholder="Enter Your Address"
+      />
+      <div
+        *ngIf="address?.invalid && (address?.dirty || address?.touched)"
+        class="alertInput"
+      >
+        <div *ngIf="address?.errors?.required">**Address is required.</div>
+        <div *ngIf="address?.errors?.minlength">
+          **Minmum 6 character required
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+      <label for="file">File</label>
+      <input
+          formControlName="file"
+          id="file"
+          type="file"
+          class="form-control"
+          (change)="onFileChange($event)">
+      <div *ngIf="file.touched && file.invalid" class="alert alert-danger">
+          <div *ngIf="file.errors.required">File is required.</div>
+      </div>
+  </div> -->
+
+  <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+
+    <div class="text-center">
+      <button
+        type="submit"
+        [disabled]="addResto.invalid"
+        class="btn col-sm-12 col-md-4 my-2 btn-primary me-5"
+      >
+      <span *ngIf="isAddMode">
+        Submit
+      </span>
+      <span *ngIf="!isAddMode">
+        Update
+      </span>
+      </button>
+      <button type="reset" class="btn btn-warning col-sm-12 col-md-4">
+        Reset
+      </button>
+    </div>
+  </form>
+</div>
+<router-outlet></router-outlet>

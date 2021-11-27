@@ -1,0 +1,29 @@
+<app-navbar></app-navbar>
+
+<h1 class="text-center" *ngIf="collection">Resturant Listing : <span class="text-white">{{collection.length}}</span></h1>
+<hr class="mx-auto">
+
+<div class="container">
+    <table class="table table-hover table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Address</th>
+            <th scope="col">Operation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of collection;let i =index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.address}}</td>
+            <td class="text-align"><i (click)="deleteResto(item.id)" class="fa fa-trash" style="font-size:20px;color:red;"></i>&nbsp;&nbsp;
+              <a routerLink="/update/{{item.id}}"><i class="fa fa-edit" style="font-size:20px;color:rgb(20, 69, 133);"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<router-outlet></router-outlet>

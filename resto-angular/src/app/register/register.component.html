@@ -1,0 +1,92 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">Resto</a>
+    </div>
+  </nav>
+</div>
+
+<h1 class="text-center my-5">Register New User</h1>
+<div class="col-sm-6 mx-auto">
+  <div
+    *ngIf="alert"
+    class="alert my-4 alert-success alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{alertmsg}}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  <form [formGroup]="registerResto" (ngSubmit)="userRegistered()">
+
+
+    <div class="mb-3">
+      <label class="form-label">User Name</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="username"
+        minlength="6"
+        placeholder="Enter Name"
+      />
+      <div *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)" class="alertInput">
+        <div *ngIf="userName?.errors?.required">**Resturant name is required.</div>
+        <div *ngIf="userName?.errors?.minlength">
+          **Minmum 6 character required
+        </div>
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <label class="form-label">Enter your Email</label>
+      <input
+        type="email"
+        class="form-control"
+        email
+        formControlName="email"
+        placeholder="xyz@gmail.com"
+      />
+      <div *ngIf="emilId?.invalid && (emilId?.dirty || emilId?.touched)" class="alertInput">
+        <div *ngIf="emilId?.errors?.required">**email is required.</div>
+        <div *ngIf="emilId?.errors?.email">
+          **Email address is invalid
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="mb-3">
+      <label class="form-label">Enter Password</label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Enter Your Address"
+      />
+      <div *ngIf="passWord?.invalid && (passWord?.dirty || passWord?.touched)" class="alertInput">
+        <div *ngIf="passWord?.errors?.required">**Resturant name is required.</div>
+        <div *ngIf="passWord?.errors?.minlength">
+          **Minmum 6 character required
+        </div>
+      </div>
+    </div>
+
+
+    <div class="text-center">
+    <button
+      type="submit"
+      [disabled]="registerResto.invalid"
+      class="btn col-sm-5 btn-primary me-5"
+    >
+      Register
+    </button>
+    <button type="reset" class="btn col-sm-5 btn-warning">Reset</button>
+  </div>
+  </form>
+</div>

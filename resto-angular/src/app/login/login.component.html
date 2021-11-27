@@ -1,0 +1,65 @@
+
+<div class="container">
+  <nav class="navbar navbar-expand-sm navbar-light ">
+    <div class="container-fluid bg-secondary rounded-pill">
+      <a class="navbar-brand heading text-info mx-auto" routerLink="">Resto</a>
+    </div>
+  </nav>
+</div>
+
+<h1 class="text-center my-4">LogIn Here</h1>
+
+<div
+    *ngIf="alert"
+    class="alert my-4 alert-success alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{alertmsg}}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+<div class="col-sm-6 mx-auto my-5">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+      <label class="form-label">Enter Your Email</label>
+      <input
+        type="email"
+        class="form-control"
+        formControlName="username"
+        placeholder="xyz123@gmail.com"
+      />
+      <div *ngIf="userName?.invalid && (userName?.dirty || userName?.touched)" class="alert">
+        <div *ngIf="userName?.errors?.required">**Email is required.</div>
+        <div *ngIf="userName?.errors?.email">
+          **Invalid email id
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Enter Your Password</label>
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="12345678"
+      />
+      <div *ngIf="passWord?.invalid && (passWord?.dirty || passWord?.touched)" class="alert">
+        <div *ngIf="passWord?.errors?.required">**Password is required.</div>
+        <div *ngIf="passWord?.errors?.minlength">
+          **Minmum 8 character required
+        </div>
+      </div>
+    </div>
+    <div class="form-group text-center buttons">
+      <button [disabled]="loginForm.invalid" class="btn col-sm-12 col-md-4 my-2 btn-info me-5">
+        Login
+      </button>
+      <a [routerLink]="'/register'" class="btn btn-secondary col-sm-12 col-md-4">Register</a>
+    </div>
+  </form>
+</div>

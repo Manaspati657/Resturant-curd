@@ -1,0 +1,31 @@
+input.ng-invalid{
+  border-left: 3px solid red;
+}
+
+input.ng-valid{
+  border-left: 5px solid green;
+}
+
+.heading{
+  font-weight: 600;
+  font-size: xx-large;
+}
+
+.alert{
+  color:red;
+  padding: 5px;
+  margin: 0px;
+  border-radius: 0%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: rgb(224, 220, 220);
+}
+
+
+.buttons button,a{
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  opacity: 1;
+  pointer-events: all;
+}
